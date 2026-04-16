@@ -75,25 +75,49 @@ const questions = [
 
 const results = {
   A: {
-    title: "The Aesthetic Visionary",
+    title: "The Core Stan",
+    image: "images/core-stan.jpg",
     description:
-      "You are drawn to visuals, concepts, and stage presence. You love when K-pop feels like a whole world with strong styling, storytelling, and artistic direction."
+      "You’re all in. Comebacks are events, not just releases, and you somehow know every era, inside joke, and chaotic moment in the fandom. Being a fan isn’t just something you do—it’s part of your personality now.",
+    vibe: "🔥 Passionate • Loyal • Dedicated",
+    groups: [
+    { group: "Enhypen", song: "Bite Me" },
+    { group: "Ateez", song: "Crazy Form" }
+    ]
   },
   B: {
-    title: "The Chaos Companion",
+    title: "The Emotional Supporter",
+    image: "images/emotional-supporter.jpg",
     description:
-      "You love the fun side of fandom. Variety clips, memes, group chemistry, and unhinged fan energy are what make K-pop exciting for you."
+      "You connect with K-pop on a deeper level. The music, lyrics, and the members’ stories often feel personal, and sometimes a single song can completely change your mood. For you, K-pop is comfort as much as it is entertainment.",
+    vibe: "🌙 Warm • Empathetic • Comforting",
+    groups: [
+    { group: "TXT", song: "Love Language" },
+    { group: "Lesserafim", song: "Blue Flame" }
+    ]
   },
   C: {
-    title: "The Emotional Loyalist",
+    title: "The Social Fan",
+    image: "images/social-fan.jpg",
     description:
-      "You connect to K-pop through feeling. Music becomes part of your life, and your relationship to your favorite artists is deeply personal and comforting."
-  },
+      "Half the fun of K-pop is talking about it with other people. Group chats explode during comebacks, memes appear instantly, and reactions are always dramatic. For you, the fandom experience is just as exciting as the music.",
+    vibe: "🎊 Energetic • Expressive • Community-Driven",
+    groups: [
+    { group: "Twice", song: "The Feels" },
+    { group: "P1Harmony", song: "DUH!" }
+    ]
+    },
   D: {
-    title: "The Lore Detective",
+    title: "The Casual Listener",
+    image: "images/casual-listener.jpg",
     description:
-      "You notice everything. From hidden meanings to member dynamics to fandom history, you enjoy digging deeper and understanding the full picture."
-  }
+      "You enjoy K-pop when it shows up on your playlist, and that’s enough. A catchy song or cool performance will get your attention, but you don’t feel the need to follow every update. You’re here for the vibes, not the full-time commitment.",
+    vibe: "✨ Chill • Easygoing • Laid-back",
+    groups: [
+    { group: "NewJeans", song: "Hype Boy" },
+    { group: "Aespa", song: "Better Things" }
+    ]
+    }
 };
 
 let currentQuestion = 0;
@@ -108,6 +132,9 @@ const quizScreen = document.getElementById("quiz-screen");
 const resultScreen = document.getElementById("result-screen");
 const resultType = document.getElementById("result-type");
 const resultDescription = document.getElementById("result-description");
+const resultImage = document.getElementById("result-image");
+const resultVibe = document.getElementById("result-vibe");
+const resultGroups = document.getElementById("result-groups");
 const restartBtn = document.getElementById("restart-btn");
 const progressBar = document.getElementById("progress-bar");
 
@@ -123,8 +150,8 @@ function showQuestion() {
     button.textContent = answer.text;
 
     if (userAnswers[currentQuestion] === index) {
-      button.style.background = "#fff0f7";
-      button.style.borderColor = "#d94f9d";
+      button.style.background = "#EAF4E1";
+      button.style.borderColor = "#A0CD79";
     }
 
     button.addEventListener("click", () => {
@@ -176,9 +203,41 @@ function showResult() {
   const result = getResult();
   quizScreen.classList.add("hidden");
   resultScreen.classList.remove("hidden");
+
   resultType.textContent = result.title;
+  resultImage.src = result.image;
+  resultImage.alt = result.title;
   resultDescription.textContent = result.description;
+  resultVibe.textContent = "Vibe: " + result.vibe;
+  
+  let groupHTML = "<ul>";
+
+  result.groups.forEach(item => {
+    groupHTML += `<li><strong>${item.group}</strong> — <em>"${item.song}"</em></li>`;
+  });
+
+  groupHTML += "</ul>";
+
+  resultGroups.innerHTML = groupHTML;
+
   progressBar.style.width = "100%";
+  document.body.className = "";
+
+  if (result.title === "The Core Stan") {
+    document.body.classList.add("core");
+  }
+
+  if (result.title === "The Emotional Supporter") {
+    document.body.classList.add("emotional");
+  }
+
+  if (result.title === "The Social Fan") {
+    document.body.classList.add("social");
+  }
+
+  if (result.title === "The Casual Listener") {
+    document.body.classList.add("casual");
+  }
 }
 
 nextBtn.addEventListener("click", () => {
@@ -200,6 +259,7 @@ prevBtn.addEventListener("click", () => {
 restartBtn.addEventListener("click", () => {
   currentQuestion = 0;
   userAnswers = new Array(questions.length).fill(null);
+  document.body.className = "";
   resultScreen.classList.add("hidden");
   quizScreen.classList.remove("hidden");
   showQuestion();
