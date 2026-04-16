@@ -5,14 +5,24 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #ffe6f2, #f4e8ff);
-  color: #333;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
+   margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+
+    /* 黑色背景 */
+    background-color: black;
+
+    /* 两层波点制造错位效果 */
+    background-image:
+        radial-gradient(rgb(233, 233, 233) 8px, transparent 9px),
+        radial-gradient(rgb(146, 146, 146) 8px, transparent 9px);
+
+    background-size: 80px 80px;
+    background-position: 0 0, 40px 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .quiz-container {
@@ -28,7 +38,7 @@ h1 {
   text-align: center;
   margin-bottom: 10px;
   font-size: 2rem;
-  color: #d94f9d;
+  color: #A0CB75;
 }
 
 .subtitle {
@@ -57,7 +67,7 @@ h1 {
 
 .answer-btn {
   padding: 14px 18px;
-  border: 2px solid #f3c2df;
+  border: 2px solid #B8D897;
   border-radius: 12px;
   background: #fff;
   cursor: pointer;
@@ -67,8 +77,8 @@ h1 {
 }
 
 .answer-btn:hover {
-  background: #fff0f7;
-  border-color: #d94f9d;
+  background: #EAF4E1;
+  border-color: #A0CB75;
 }
 
 .controls {
@@ -91,7 +101,7 @@ button {
 }
 
 .next-btn {
-  background: #d94f9d;
+  background: #A0CB75;
   color: white;
 }
 
@@ -104,7 +114,7 @@ button {
 }
 
 .result-box h2 {
-  color: #d94f9d;
+  color: #000000;
   margin-bottom: 15px;
   font-size: 1.8rem;
 }
@@ -115,6 +125,14 @@ button {
   margin-bottom: 15px;
 }
 
+.result-image {
+  width: 220px;
+  max-width: 80%;
+  display: block;
+  margin: 20px auto 15px;
+  /* border-radius: 14px; */
+}
+
 .result-description {
   line-height: 1.7;
   color: #555;
@@ -122,7 +140,7 @@ button {
 }
 
 .restart-btn {
-  background: #d94f9d;
+  background: #A0CB75;
   color: white;
 }
 
@@ -134,9 +152,96 @@ button {
   overflow: hidden;
 }
 
-.progress-bar {
-  height: 100%;
-  background: #d94f9d;
-  width: 0%;
-  transition: 0.3s;
+.progress-bar { 
+  height: 100%; 
+  background: #A0CB75; 
+  width: 0%; 
+  transition: 0.3s; 
+}
+
+/* Core Stan */
+body.core {
+  background-color: #E36D9B;
+
+  background-image:
+        radial-gradient(rgb(247, 195, 228) 8px, transparent 9px),
+        radial-gradient(rgb(247, 228, 239) 8px, transparent 9px);
+}
+
+body.core .result-type {
+  color: #E36D9B;
+}
+
+body.core .restart-btn {
+  background: #E36D9B;
+}
+
+/* Emotional Supporter */
+body.emotional {
+  background-color: #E7DD6A;
+
+  background-image:
+        radial-gradient(rgb(244, 245, 181) 8px, transparent 9px),
+        radial-gradient(rgb(245, 245, 218) 8px, transparent 9px);
+}
+
+body.emotional .result-type {
+  color: #E7DD6A;
+}
+
+body.emotional .restart-btn {
+  background: #E7DD6A;
+}
+
+/* Social Fan */
+body.social {
+  background-color: #10B183;
+
+  background-image:
+        radial-gradient(rgb(179, 254, 229) 8px, transparent 9px),
+        radial-gradient(rgb(212, 248, 235) 8px, transparent 9px);
+}
+
+body.social .result-type {
+  color: #10B183;
+}
+
+body.social .restart-btn {
+  background: #10B183;
+}
+
+/* Casual Listener */
+body.casual {
+  background-color: #2B4789;
+
+  background-image:
+        radial-gradient(rgb(176, 178, 255) 8px, transparent 9px),
+        radial-gradient(rgb(219, 217, 254) 8px, transparent 9px);
+}
+
+body.casual .result-type {
+  color: #2B4789;
+}
+
+body.casual .restart-btn {
+  background: #2B4789;
+}
+
+.result-vibe {
+  margin-top: 12px;
+  font-style: italic;
+}
+
+.result-groups {
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+.result-groups ul {
+  margin-top: 10px;
+  padding-left: 22px;
+}
+
+.result-groups li {
+  margin: 6px 0;
 }
